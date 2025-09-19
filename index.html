@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi lindo chico💕</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ffb3c1; /* Rosa pastel */
+            --secondary-color: #ffcccb; /* Rosa claro */
+            --accent-color: #f8ad9d; /* Coral suave */
+            --light-color: #ffebee; /* Rosa muy claro */
+            --dark-color: #a8577e; /* Rosa oscuro suave */
+            --text-color: #5d3a4e; /* Texto más suave */
+            --gold-color: #ffd700;
+            --card-bg: rgba(255, 255, 255, 0.95); /* Fondo blanco para tarjetas */
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffebee 0%, #ffcccb 50%, #ffb3c1 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        /* Pantalla inicial con video */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 235, 238, 0.9);
+            transition: opacity 1.5s ease;
+        }
+
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: var(--text-color);
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            animation: pulse 2s infinite;
+            border: 2px solid var(--gold-color);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .welcome-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            color: var(--dark-color);
+        }
+
+        .welcome-content p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .welcome-subtitle {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin: 1.5rem 0;
+            color: var(--accent-color);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-button {
+            padding: 15px 40px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .start-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: var(--dark-color);
+        }
+
+        /* Navegación */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem;
+        }
+
+        .nav-item {
+            margin: 0 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-link:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Secciones */
+        .section {
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Galería de fotos - Carrusel */
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--gold-color);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-color);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-control:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .carousel-control.prev {
+            left: 15px;
+        }
+
+        .carousel-control.next {
+            right: 15px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Recuerdos en video */
+        .videos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid var(--gold-color);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .video-title {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-description {
+            line-height: 1.6;
+        }
+
+        /* Contador de horas vividas */
+        .counter-container {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--gold-color);
+            color: var(--text-color);
+        }
+
+        .counter-title {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .counter-item {
+            background: var(--accent-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            min-width: 120px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .counter-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-label {
+            font-size: 1rem;
+        }
+
+        /* Mensajes románticos */
+        .messages-container {
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: linear-gradient(135deg, #ffcccb 0%, #ffb3c1 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 250px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            cursor: pointer;
+            border: 1px solid var(--gold-color);
+        }
+
+        .floating-card.show {
+            opacity: 1;
+        }
+
+        .floating-card:hover {
+            z-index: 50 !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .message-text {
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .message-heart {
+            text-align: right;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+        }
+
+        /* Sección final interactiva */
+        .interactive-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--gold-color);
+            color: var(--text-color);
+        }
+
+        .interactive-title {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+        }
+
+        .kiss-button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--accent-color), var(--dark-color));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .kiss-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            transform: rotate(45deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: -10px;
+            top: 0;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: rotate(-45deg);
+            transform-origin: 10px 10px;
+        }
+
+        .heart:after {
+            left: 0;
+            top: -10px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(45deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(45deg);
+            }
+        }
+
+        /* Carta de cumpleaños */
+        .birthday-letter {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(207, 84, 84, 0.1);
+            position: relative;
+            border: 2px solid var(--gold-color);
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark-color);
+        }
+
+        .letter-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--dark-color);
+            font-weight: bold;
+        }
+
+        .letter-heart {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .welcome-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-content p, .welcome-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .carousel-img {
+                height: 300px;
+            }
+            
+            .counter {
+                gap: 1rem;
+            }
+            
+            .counter-item {
+                min-width: 100px;
+                padding: 1rem;
+            }
+            
+            .counter-value {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                margin: 0.5rem;
+            }
+
+            .birthday-letter {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Efectos especiales */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            opacity: 0;
+            animation: confettiFall 5s linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-10px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        .active-section {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .birthday-cake {
+            text-align: center;
+            font-size: 3rem;
+            margin: 2rem 0;
+            animation: bounce 2s infinite;
+            color: var(--dark-color);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .birthday-message {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla inicial con video -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <video class="background-video" autoplay muted loop>
+            <source src="video-cumple.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <div class="welcome-content">
+            <h1>¡Feliz Cumpleaños Mi vida! 💕</h1>
+            <div class="welcome-subtitle">Cada día a tu lado es un regalo del cielo<3
+            </div>
+            <button class="start-button" id="startButton">Abrir tu regalo</button>
+        </div>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="nav-container" id="navContainer">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#gallery" class="nav-link" data-section="gallery">Fotos</a></li>
+            <li class="nav-item"><a href="#videos" class="nav-link" data-section="videos">Videos</a></li>
+            <li class="nav-item"><a href="#counter" class="nav-link" data-section="counter">Tiempo</a></li>
+            <li class="nav-item"><a href="#messages" class="nav-link" data-section="messages">Mensajes</a></li>
+        </ul>
+    </nav>
+
+    <!-- Galería de fotos -->
+    <section id="gallery" class="section">
+        <h2 class="section-title">FELIZ CUMPLE MI WAPOTE</h2>
+        
+        
+        
+        <div class="birthday-message">
+            <p>Hoy es un día muy especial porque celebramos tu existencia. Eres una persona increíble y mereces todo lo mejor en este día y siempre.</p>
+        </div>
+        
+        <!-- Carta de cumpleaños -->
+        <div class="birthday-letter">
+            <div class="letter-header">
+                <h3>Para ti, en tu día especial</h3>
+            </div>
+            <div class="letter-content">
+                <p>Mi querido Yind,</p>
+                <p>En este día tan especial, quiero dedicarte estas palabras para expresarte todo lo que siento. Desde que llegaste a mi vida, cada día tiene más color, más sentido y más amor.</p>
+                <p>Eres la persona más maravillosa que he conocido: tu sonrisa ilumina mis días, tu bondad inspira lo mejor de mí y tu amor me hace ser mejor persona.</p>
+                <p>Hoy celebramos no solo tu cumpleaños, sino la bendición que es tenerte en este mundo. Espero que este nuevo año de vida te traiga toda la felicidad, éxito y amor que mereces.</p>
+                <p>Que cumplas muchos años más a mi lado, creando recuerdos inolvidables y compartiendo esos momentos únicos que solo nosotros entendemos.</p>
+                <p>Te amo más de lo que las palabras pueden expresar.</p>
+            </div>
+            <div class="letter-signature">
+                <p>Con todo mi amor,</p>
+                <p>De tu amada Jami>< </p>
+            </div>
+            <div class="letter-heart">💖</div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="carousel-item">
+                 <img src="/img/foto1.PNG" alt="Mi amor" width="400" height="300" style="max-width:100%; height:auto;">
+                    <div class="carousel-caption">
+                        <h3>¡Feliz Cumpleaños!</h3>
+                        <p>Que todos tus deseos se hagan realidad</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/foto2.PNG" alt="Celebrando" width="400" height="300" style="max-width:100%; height:auto;">
+                    <div class="carousel-caption">
+                        <h3>¡PRECIOSO!</h3>
+                        <p>Este día es solo para ti</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/foto3.PNG" alt="Momento especial" width="400" height="300" style="max-width:100%; height:auto;"> class="carousel-img">
+                    <div class="carousel-caption">
+                        <h3>Eres especial</h3>
+                        <p>Porque personas como tú iluminan el mundo</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control prev" id="prevBtn">&#10094;</button>
+            <button class="carousel-control next" id="nextBtn">&#10095;</button>
+            <div class="carousel-indicators" id="indicators"></div>
+        </div>
+    </section>
+
+    <!-- Recuerdos en video -->
+    <section id="videos" class="section">
+        <h2 class="section-title">Momentos Especiales</h2>
+        <div class="videos-container">
+            <div class="video-card">
+                <video class="video-player" controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 class="video-title">Mensaje de Cumpleaños</h3>
+                    <p class="video-date">19 de Septiembre, 2024</p>
+                    <p class="video-description">Un pequeño mensaje para ti en tu día especial.</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video class="video-player" controls>
+                    <source src="video2.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 class="video-title">Recuerdo especial</h3>
+                    <p class="video-date">15 de Agosto, 2024</p>
+                    <p class="video-description">Ese día que pasamos juntos y nunca olvidaré.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador de horas vividas -->
+    <section id="counter" class="section">
+        <h2 class="section-title">Tu Tiempo en Este Mundo</h2>
+        <div class="counter-container">
+            <h3 class="counter-title">Desde que naciste (19-09-2005)</h3>
+            <div class="counter">
+                <div class="counter-item">
+                    <div class="counter-value" id="years">0</div>
+                    <div class="counter-label">Años</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-value" id="months">0</div>
+                    <div class="counter-label">Meses</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-value" id="days">0</div>
+                    <div class="counter-label">Días</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-value" id="hours">0</div>
+                    <div class="counter-label">Horas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mensajes románticos -->
+    <section id="messages" class="section">
+        <h2 class="section-title">Mensajes para Ti</h2>
+        <div class="messages-container" id="messagesContainer">
+            <!-- Los mensajes se generarán dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    <!-- Sección final interactiva -->
+    <div class="interactive-section">
+        <h2 class="interactive-title">¿Te está gustando tu día?</h2>
+        <button class="kiss-button" id="kissButton">Enviar un beso 💋</button>
+    </div>
+
+    <!-- Corazones de fondo -->
+    <div class="hearts-container">
+        <div class="heart" style="top: 10%; left: 10%; animation-delay: 0s"></div>
+        <div class="heart" style="top: 20%; right: 15%; animation-delay: 1s"></div>
+        <div class="heart" style="top: 60%; left: 5%; animation-delay: 2s"></div>
+        <div class="heart" style="top: 80%; right: 10%; animation-delay: 3s"></div>
+        <div class="heart" style="top: 40%; left: 20%; animation-delay: 4s"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos DOM
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            const startButton = document.getElementById('startButton');
+            const navContainer = document.getElementById('navContainer');
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicatorsContainer = document.getElementById('indicators');
+            const messagesContainer = document.getElementById('messagesContainer');
+            const kissButton = document.getElementById('kissButton');
+            const yearsEl = document.getElementById('years');
+            const monthsEl = document.getElementById('months');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            
+            // Variables para el carrusel
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.carousel-item');
+            const indicators = [];
+            
+            // Inicializar indicadores del carrusel
+            slides.forEach((_, i) => {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (i === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(i));
+                indicatorsContainer.appendChild(indicator);
+                indicators.push(indicator);
+            });
+            
+            // Función para cambiar slide
+            function goToSlide(index) {
+                currentSlide = index;
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Actualizar indicadores
+                indicators.forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            // Event listeners para controles del carrusel
+            prevBtn.addEventListener('click', () => {
+                goToSlide((currentSlide - 1 + slides.length) % slides.length);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                goToSlide((currentSlide + 1) % slides.length);
+            });
+            
+            // Autoavance del carrusel
+            setInterval(() => {
+                goToSlide((currentSlide + 1) % slides.length);
+            }, 5000);
+            
+            // Mensajes románticos
+            const romanticMessages = [
+                "Feliz cumpleaños al hombre más increíble que conozco. 💖",
+                "Hoy celebramos tu existencia, el mejor regalo para el mundo. 🎁",
+                "Eres la razón por la que mi corazón late más fuerte cada día. 💗",
+                "Que este nuevo año de vida te traiga toda la felicidad que mereces. 🌟",
+                "Tu sonrisa ilumina hasta el día más oscuro. ☀️",
+                "Cada momento a tu lado es un tesoro que guardo en mi corazón. 🏆",
+                "El amor que siento por ti crece más con cada amanecer. 🌅",
+                "Eres mi sueño hecho realidad, mi anhelo cumplido. 🌠",
+                "En tus brazos he encontrado mi hogar. 🏡",
+                "Si tu cuerpo fuera cárcel y tus brazos cadenas,ese seria el lugar perfecto para cumplir condena. 💫"
+            ];
+            
+            // Generar tarjetas de mensajes flotantes
+            romanticMessages.forEach((message, index) => {
+                const card = document.createElement('div');
+                card.classList.add('floating-card');
+                card.innerHTML = `
+                    <p class="message-text">${message}</p>
+                    <div class="message-heart">💗</div>
+                `;
+                
+                // Posición aleatoria
+                const posX = Math.random() * (messagesContainer.offsetWidth - 250);
+                const posY = Math.random() * (messagesContainer.offsetHeight - 150);
+                
+                card.style.left = `${posX}px`;
+                card.style.top = `${posY}px`;
+                card.style.zIndex = index + 1;
+                card.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+                
+                // Animación de entrada
+                setTimeout(() => {
+                    card.classList.add('show');
+                }, index * 300);
+                
+                messagesContainer.appendChild(card);
+                
+                // Hacer las tarjetas arrastrables
+                let isDragging = false;
+                let startX, startY, initialX, initialY;
+                
+                card.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    initialX = parseInt(getComputedStyle(card).left);
+                    initialY = parseInt(getComputedStyle(card).top);
+                    card.style.cursor = 'grabbing';
+                    card.style.zIndex = 100;
+                    e.preventDefault();
+                });
+                
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    
+                    const dx = e.clientX - startX;
+                    const dy = e.clientY - startY;
+                    
+                    card.style.left = `${initialX + dx}px`;
+                    card.style.top = `${initialY + dy}px`;
+                });
+                
+                document.addEventListener('mouseup', () => {
+                    isDragging = false;
+                    card.style.cursor = 'grab';
+                });
+            });
+            
+            // Contador de tiempo vivido
+            function updateTimeCounter() {
+                const birthDate = new Date('2005-09-19');
+                const now = new Date();
+                
+                const diffTime = Math.abs(now - birthDate);
+                const years = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25));
+                const months = Math.floor((diffTime % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+                const days = Math.floor((diffTime % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                
+                yearsEl.textContent = years;
+                monthsEl.textContent = months;
+                daysEl.textContent = days;
+                hoursEl.textContent = hours;
+            }
+            
+            // Actualizar contador cada hora
+            updateTimeCounter();
+            setInterval(updateTimeCounter, 3600000);
+            
+            // Botón de beso
+            kissButton.addEventListener('click', () => {
+                createConfetti();
+                alert('💋 ¡Beso enviado! Te amo mi vida. ¡Feliz cumpleaños!');
+            });
+            
+            // Función para crear confeti
+            function createConfetti() {
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.classList.add('confetti');
+                        confetti.style.left = Math.random() * window.innerWidth + 'px';
+                        confetti.style.backgroundColor = [
+                            '#ffb3c1', '#ffcccb', '#f8ad9d', '#a8577e', '#ffd700'
+                        ][Math.floor(Math.random() * 5)];
+                        confetti.style.animationDelay = Math.random() * 2 + 's';
+                        
+                        document.body.appendChild(confetti);
+                        
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, 5000);
+                    }, i * 100);
+                }
+            }
+            
+            // Navegación entre secciones
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetSection = link.getAttribute('data-section');
+                    
+                    // Ocultar todas las secciones
+                    sections.forEach(section => {
+                        section.classList.remove('active-section');
+                    });
+                    
+                    // Mostrar la sección objetivo
+                    document.getElementById(targetSection).classList.add('active-section');
+                    
+                    // Scroll suave a la sección
+                    document.getElementById(targetSection).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Botón de inicio
+            startButton.addEventListener('click', () => {
+                welcomeScreen.style.opacity = '0';
+                
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                    navContainer.style.display = 'block';
+                    document.getElementById('gallery').classList.add('active-section');
+                }, 1500);
+            });
+            
+            // Mostrar primera sección por defecto
+            setTimeout(() => {
+                if (welcomeScreen.style.display !== 'none') {
+                    document.getElementById('gallery').classList.add('active-section');
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
